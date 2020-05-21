@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <RootNamespace>SS3D_Server_Browser_Server</RootNamespace>
+        <RootNamespace>ss3d_server_browser_servers_microservice</RootNamespace>
     </PropertyGroup>
 
 

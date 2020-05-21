@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Milly\.Rider2019.3\config\scratches" t="IncludeRecursive" />
+    <e p="C:\Users\Milly\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Milly\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_SS3D-Server-Browser-Gateway.-1957532693.00" t="ExcludeRecursive" />
+    <e p="D:\Data\Projects\C#\SS3D-Server-Browser-Server" t="IncludeFlat">
+      <e p="SS3D-Server-Browser-Gateway.sln" t="IncludeFlat" />
+      <e p="SS3D-Server-Browser-Server" t="IncludeRecursive">
+        <e p="SS3D-Server-Browser-Server.csproj" t="IncludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>

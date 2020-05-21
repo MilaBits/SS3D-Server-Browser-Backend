@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ss3d-server-browser-deployment
+  labels:
+    app: ss3d-server-browser
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ss3d-server-browser
+  template:
+    metadata:
+      labels:
+        app: ss3d-server-browser
+    spec:
+      containers:
+      - name: ss3d-server-browser
+        image: millybits/ss3d-server-browser-server:latest
+        ports:
+        - containerPort: 80

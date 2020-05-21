@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SS3D-Server-Browser-Server", "SS3D-Server-Browser-Server\SS3D-Server-Browser-Server.csproj", "{5227B61E-DAB0-4D34-84CB-8622A9F59ED2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SS3D-Server-Browser-Gateway", "ss3d-server-browser-gateway\SS3D-Server-Browser-Gateway.csproj", "{C7FDB567-CEEA-4FB7-8BBA-B2BFD8055C88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ss3d-server-browser-servers-microservice", "ss3d-server-browser-servers-microservice\ss3d-server-browser-servers-microservice.csproj", "{F1AF17FF-BC8E-4522-9ACB-2CC364D7B0D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5227B61E-DAB0-4D34-84CB-8622A9F59ED2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5227B61E-DAB0-4D34-84CB-8622A9F59ED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5227B61E-DAB0-4D34-84CB-8622A9F59ED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5227B61E-DAB0-4D34-84CB-8622A9F59ED2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7FDB567-CEEA-4FB7-8BBA-B2BFD8055C88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7FDB567-CEEA-4FB7-8BBA-B2BFD8055C88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7FDB567-CEEA-4FB7-8BBA-B2BFD8055C88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7FDB567-CEEA-4FB7-8BBA-B2BFD8055C88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1AF17FF-BC8E-4522-9ACB-2CC364D7B0D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1AF17FF-BC8E-4522-9ACB-2CC364D7B0D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1AF17FF-BC8E-4522-9ACB-2CC364D7B0D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1AF17FF-BC8E-4522-9ACB-2CC364D7B0D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

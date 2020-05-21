@@ -1,0 +1,82 @@
+version: '3'
+
+services:
+
+  # frontend:
+  #   build: ./smilei-frontend
+  #   ports:
+  #     - 8070:80
+      
+  # eureka:
+  #   build: ./smilei_gateway/eureka
+  #   ports:
+  #     - '8761:8761'
+
+  ss3d-server-browser-gateway:
+    build: ./ss3d-server-browser-gateway
+    ports:
+      - '8080:8080'
+    # depends_on:
+    #   - eureka
+    # environment:
+    #   - EUREKA_URI=http://eureka:8761/eureka
+
+  ss3d-server-browser-servers-microservice:
+    build: ./ss3d-server-browser-servers-microservice
+    ports:
+      - '8090:8080'
+
+  # websocket-server:
+  #   build: ./smilei_gateway/websocket-server
+  #   depends_on:
+  #     - eureka
+  #     - rabbitmq
+  #   environment:
+  #     - EUREKA_URI=http://eureka:8761/eureka
+  #     - BROKER_RELAY_HOST=rabbitmq
+
+  # authentication-db:
+  #   image: mysql
+  #   command: --default-authentication-plugin=mysql_native_password
+  #   ports:
+  #     - 3306:3306
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_DATABASE: account
+
+  # vokaturi-db:
+  #   image: mysql
+  #   command: --default-authentication-plugin=mysql_native_password
+  #   ports:
+  #     - 3307:3306
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_DATABASE: vokaturi
+
+  # adminer:
+  #   image: adminer
+  #   ports:
+  #      - 8091:8080
+
+  # vokaturi-microservice:
+  #   build: ./smilei_microservice_vokaturi
+  #   restart: always
+  #   depends_on:
+  #     - rabbitmq
+  #   ports:
+  #     - 8085:80
+
+  #   rabbitmq:
+  #     build: rabbitmq
+  #     labels:
+  #       kompose.service.type: nodeport
+  #     ports:
+  #       - "5672:5672"
+  #       - '15672:15672'
+  #       - '61613:61613'
+  #     volumes:
+  #       - 'rabbitmq_data:/bitnami'
+
+# volumes:
+#   rabbitmq_data:
+#     driver: local
