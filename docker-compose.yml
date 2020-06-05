@@ -1,82 +1,77 @@
 version: '3'
 
 services:
-
-  # frontend:
-  #   build: ./smilei-frontend
-  #   ports:
-  #     - 8070:80
+           
+  rabbitmq:
+    build: rabbitmq
+    labels:
+      kompose.service.type: nodeport
+    ports:
+      - "5672:5672"
+      - '15672:15672'
+  
+  gateway:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile-Gateway
+    image: millybits/ss3d-server-browser-gateway
+    ports:
+      - '5000:5000'
       
-  # eureka:
-  #   build: ./smilei_gateway/eureka
-  #   ports:
-  #     - '8761:8761'
-
-  ss3d-server-browser-gateway:
-    build: ./ss3d-server-browser-gateway
+  servers-microservice:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile-Servers
+    image: millybits/ss3d-server-browser-servers-microservice
     ports:
-      - '8080:8080'
-    # depends_on:
-    #   - eureka
-    # environment:
-    #   - EUREKA_URI=http://eureka:8761/eureka
-
-  ss3d-server-browser-servers-microservice:
-    build: ./ss3d-server-browser-servers-microservice
+      - '8050:8080'
+    restart: unless-stopped
+      
+  servers-db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    environment:
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: servers
     ports:
-      - '8090:8080'
+      - 3306:3306
+    expose: 
+      - '3306'
+    volumes:
+      - servers-db:/var/lib/mysql
+      
+  news-microservice:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile-News
+    image: millybits/ss3d-server-browser-news-microservice
+    ports:
+      - '8060:8080'
+    restart: unless-stopped
+    
+  servers-db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    environment:
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: news
+    ports:
+      - 3306:3306
+    expose: 
+      - '3306'
+    volumes:
+      - news-db:/var/lib/mysql
 
-  # websocket-server:
-  #   build: ./smilei_gateway/websocket-server
-  #   depends_on:
-  #     - eureka
-  #     - rabbitmq
-  #   environment:
-  #     - EUREKA_URI=http://eureka:8761/eureka
-  #     - BROKER_RELAY_HOST=rabbitmq
-
-  # authentication-db:
-  #   image: mysql
-  #   command: --default-authentication-plugin=mysql_native_password
-  #   ports:
-  #     - 3306:3306
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: root
-  #     MYSQL_DATABASE: account
-
-  # vokaturi-db:
-  #   image: mysql
-  #   command: --default-authentication-plugin=mysql_native_password
-  #   ports:
-  #     - 3307:3306
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: root
-  #     MYSQL_DATABASE: vokaturi
-
-  # adminer:
-  #   image: adminer
-  #   ports:
-  #      - 8091:8080
-
-  # vokaturi-microservice:
-  #   build: ./smilei_microservice_vokaturi
-  #   restart: always
-  #   depends_on:
-  #     - rabbitmq
-  #   ports:
-  #     - 8085:80
-
-  #   rabbitmq:
-  #     build: rabbitmq
-  #     labels:
-  #       kompose.service.type: nodeport
-  #     ports:
-  #       - "5672:5672"
-  #       - '15672:15672'
-  #       - '61613:61613'
-  #     volumes:
-  #       - 'rabbitmq_data:/bitnami'
-
-# volumes:
-#   rabbitmq_data:
-#     driver: local
+  adminer:
+    image: adminer
+    ports:
+      - 8091:8080
+        
+volumes:
+  servers-db:
+  news-db:
+  

@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <RootNamespace>ss3d_server_browser_shared</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Models" />
+    </ItemGroup>
+
+<!--    <ItemGroup>-->
+<!--      <ProjectReference Include="ss3d-server-browser-shared.csproj" />-->
+<!--    </ItemGroup>-->
+
+</Project>

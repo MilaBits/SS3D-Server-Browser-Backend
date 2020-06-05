@@ -1,10 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SS3D-Server-Browser-Server", "SS3D-Server-Browser-Server\SS3D-Server-Browser-Server.csproj", "{5227B61E-DAB0-4D34-84CB-8622A9F59ED2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SS3D-Server-Browser-Gateway", "ss3d-server-browser-gateway\SS3D-Server-Browser-Gateway.csproj", "{C7FDB567-CEEA-4FB7-8BBA-B2BFD8055C88}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ss3d-server-browser-servers-microservice", "ss3d-server-browser-servers-microservice\ss3d-server-browser-servers-microservice.csproj", "{F1AF17FF-BC8E-4522-9ACB-2CC364D7B0D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ss3d-server-browser-gateway", "ss3d-server-browser-gateway\ss3d-server-browser-gateway.csproj", "{0C3EAECD-76C6-4D96-8788-CD0036F85AF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ss3d-server-browser-news-microservice", "ss3d-server-browser-news-microservice\ss3d-server-browser-news-microservice.csproj", "{62169FFD-91C4-407C-A39F-AFA9F990E3DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ss3d-server-browser-shared", "ss3d-server-browser-shared\ss3d-server-browser-shared.csproj", "{374A1E05-3A0E-4075-ACA1-A40154FE4366}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +26,17 @@ Global
 		{F1AF17FF-BC8E-4522-9ACB-2CC364D7B0D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1AF17FF-BC8E-4522-9ACB-2CC364D7B0D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1AF17FF-BC8E-4522-9ACB-2CC364D7B0D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C3EAECD-76C6-4D96-8788-CD0036F85AF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C3EAECD-76C6-4D96-8788-CD0036F85AF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C3EAECD-76C6-4D96-8788-CD0036F85AF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C3EAECD-76C6-4D96-8788-CD0036F85AF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62169FFD-91C4-407C-A39F-AFA9F990E3DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62169FFD-91C4-407C-A39F-AFA9F990E3DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62169FFD-91C4-407C-A39F-AFA9F990E3DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62169FFD-91C4-407C-A39F-AFA9F990E3DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{374A1E05-3A0E-4075-ACA1-A40154FE4366}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{374A1E05-3A0E-4075-ACA1-A40154FE4366}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{374A1E05-3A0E-4075-ACA1-A40154FE4366}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{374A1E05-3A0E-4075-ACA1-A40154FE4366}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

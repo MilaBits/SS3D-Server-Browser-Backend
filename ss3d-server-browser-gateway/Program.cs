@@ -1,19 +1,23 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
-namespace SS3D_Server_Browser_Server
+namespace ss3d_server_browser_gateway
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseUrls("http://*:5000")
+                .UseStartup<Startup>()
+                .Build();
+
+            host.Run();
+            Console.WriteLine("Boop!");
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

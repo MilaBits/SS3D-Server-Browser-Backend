@@ -1,0 +1,20 @@
+﻿FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
+WORKDIR /app
+EXPOSE 5000
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+WORKDIR /src
+COPY ["ss3d-server-browser-news-microservice/ss3d-server-browser-news-microservice.csproj","ss3d-server-browser-news-microservice/"]
+COPY ["ss3d-server-browser-shared/ss3d-server-browser-shared.csproj","ss3d-server-browser-shared/"]
+RUN dotnet restore "ss3d-server-browser-news-microservice/ss3d-server-browser-news-microservice.csproj"
+COPY . .
+WORKDIR "/src/ss3d-server-browser-news-microservice"
+RUN dotnet build "ss3d-server-browser-news-microservice.csproj" -c Release -o /app
+
+FROM build AS publish
+RUN dotnet publish "ss3d-server-browser-news-microservice.csproj" -c Release -o /app
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app .
+ENTRYPOINT ["dotnet", "ss3d-server-browser-news-microservice.dll"]

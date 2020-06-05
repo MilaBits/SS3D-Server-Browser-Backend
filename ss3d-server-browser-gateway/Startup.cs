@@ -4,11 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace SS3D_Server_Browser_Server
+namespace ss3d_server_browser_gateway
 {
     public class Startup
     {
-        public const string ServersListPolicy = "ServersPolicy";
+        public const string ElectronClientPolicy = "ServersPolicy";
 
         public Startup(IConfiguration configuration)
         {
@@ -23,7 +23,7 @@ namespace SS3D_Server_Browser_Server
             services.AddControllers();
 
             services.AddCors(options =>
-                options.AddPolicy(ServersListPolicy, builder => builder.WithOrigins("Http://localhost:4200"))
+                options.AddPolicy(ElectronClientPolicy, builder => builder.WithOrigins("Http://localhost:4200"))
             );
         }
 
@@ -38,7 +38,7 @@ namespace SS3D_Server_Browser_Server
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            
             app.UseCors();
 
             app.UseAuthorization();

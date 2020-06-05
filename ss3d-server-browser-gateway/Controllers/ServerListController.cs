@@ -1,38 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using SS3D_Server_Browser_Server.Data;
+using ss3d_server_browser_shared;
+using ss3d_server_browser_shared.Models.Servers;
+using Utf8Json;
 
-namespace SS3D_Server_Browser_Server.Controllers
+namespace ss3d_server_browser_gateway.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class ServerListController
     {
         //TODO: Re-enable cors 
-        // [EnableCors(Startup.ServersListPolicy)]
+        [EnableCors(Startup.ElectronClientPolicy)]
         [HttpGet]
         public IEnumerable<GameServerData> Get()
         {
-            GameServerData[] result = new[]
-            {
-                new GameServerData("MillyStation",
-                    "1.2.3.4", 1124, 4412,
-                    12, "playing", 0,
-                    "SS3D"),
-                new GameServerData("abcStation PVP", "abcStation's PVP server for all the trigger-happy folks",
-                    "1.2.3.4", 1124, 4412,
-                    8, 16, "playing", 0, "BoxStation", "Free For All",
-                    "SS3D", "abcStation", "0.1.4"),
-                new GameServerData("abcStation LowRP", "abcStation's low RP server.",
-                    "1.2.42.41", 1124, 4412,
-                    15, 32, "playing", 0, "BoxStation", "Secret",
-                    "SS3D", "abcStation", "0.1.4")
-            };
+            RpcClient rpcClient = new RpcClient();
 
-            return result;
+            Console.WriteLine(" [x] Requesting game servers");
+
+            RpcDataServersRequest requestObject = new RpcDataServersRequest {StartIndex = 0, Count = 15};
+            string request = JsonSerializer.ToJsonString(requestObject);
+            string response = rpcClient.Call(request);
+
+            RpcDataServersResponse rpcDataServers;
+            try
+            {
+                rpcDataServers = JsonSerializer.Deserialize<RpcDataServersResponse>(response);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($" [.] failed to parse json: {e.Message}");
+                return null;
+            }
+
+            Console.WriteLine($" [.] Got '{rpcDataServers.GameServers}'");
+
+            rpcClient.Close();
+            return rpcDataServers.GameServers;
         }
     }
 }
