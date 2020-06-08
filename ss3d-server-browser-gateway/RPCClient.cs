@@ -17,7 +17,7 @@ namespace ss3d_server_browser_gateway
 
         public RpcClient()
         {
-            var factory = new ConnectionFactory() {HostName = "rabbitmq", Port = 5672 };
+            var factory = new ConnectionFactory() {HostName = "rabbitmq", Port = 5672};
 
             connection = factory.CreateConnection();
             channel = connection.CreateModel();
@@ -40,20 +40,20 @@ namespace ss3d_server_browser_gateway
             };
         }
 
-        public string Call(string message)
+        public string Call(string message, string routingKey)
         {
             var messageBytes = Encoding.UTF8.GetBytes(message);
             channel.BasicPublish(
-                exchange: "", 
-                routingKey: "rpc.getservers", 
-                basicProperties: props, 
+                exchange: "",
+                routingKey: routingKey,
+                basicProperties: props,
                 body: messageBytes);
             channel.BasicConsume(
-                consumer: consumer, 
-                queue: replyQueueName, 
+                consumer: consumer,
+                queue: replyQueueName,
                 autoAck: true);
 
-            Console.WriteLine(" [x] rpc.getservers called");
+            Console.WriteLine($" [x] {routingKey} called");
             return respQueue.Take();
         }
 

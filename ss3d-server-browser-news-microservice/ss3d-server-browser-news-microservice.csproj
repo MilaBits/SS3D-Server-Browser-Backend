@@ -2,12 +2,12 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <RootNamespace>ss3d_server_browser_servers_microservice</RootNamespace>
-        <ProjectGuid>9f8bead2-a79c-4cd7-9799-dae3a80fac07</ProjectGuid>
+        <RootNamespace>ss3d_server_browser_news_microservice</RootNamespace>
+        <ProjectGuid>10e8fac8-5616-45f2-bb41-f89465297159</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="EntityFramework" Version="6.4.4" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
       <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.1" />
       <PackageReference Include="RabbitMQ.Client" Version="6.1.0-rc.2" />
       <PackageReference Include="Utf8Json" Version="1.3.7" />

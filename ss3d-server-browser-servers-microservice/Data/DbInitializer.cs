@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ss3d_server_browser_shared;
 using ss3d_server_browser_shared.Models.Servers;
 
 namespace ss3d_server_browser_servers_microservice.Data

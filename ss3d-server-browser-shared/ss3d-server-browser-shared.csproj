@@ -3,6 +3,7 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <RootNamespace>ss3d_server_browser_shared</RootNamespace>
+        <ProjectGuid>de76eff3-e074-4218-8769-403458fe4120</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>

@@ -2,32 +2,38 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using ss3d_server_browser_shared.Models.Servers;
+using ss3d_server_browser_shared.Models.News;
 using Utf8Json;
 
 namespace ss3d_server_browser_gateway.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ServerListController
+    public class NewsController
     {
         //TODO: Re-enable cors 
         [EnableCors(Startup.ElectronClientPolicy)]
         [HttpGet]
-        public IEnumerable<GameServerData> Get()
+        public IEnumerable<News> Get()
         {
             RpcClient rpcClient = new RpcClient();
 
-            Console.WriteLine(" [x] Requesting game servers");
+            Console.WriteLine(" [x] Requesting news");
 
-            RpcDataServersRequest requestObject = new RpcDataServersRequest {StartIndex = 0, Count = 15};
+            RpcDataNewsRequest requestObject = new RpcDataNewsRequest
+            {
+                Server = -1,
+                Category = "",
+                StartIndex = 0,
+                Count = 10
+            };
             string request = JsonSerializer.ToJsonString(requestObject);
-            string response = rpcClient.Call(request, "rpc.getservers");
+            string response = rpcClient.Call(request, "rpc.getnews");
 
-            RpcDataServersResponse rpcDataServers;
+            RpcDataNewsResponse rpcDataNews;
             try
             {
-                rpcDataServers = JsonSerializer.Deserialize<RpcDataServersResponse>(response);
+                rpcDataNews = JsonSerializer.Deserialize<RpcDataNewsResponse>(response);
             }
             catch (Exception e)
             {
@@ -35,10 +41,10 @@ namespace ss3d_server_browser_gateway.Controllers
                 return null;
             }
 
-            Console.WriteLine($" [.] Got '{rpcDataServers.GameServers}'");
+            Console.WriteLine($" [.] Got '{rpcDataNews.News}'");
 
             rpcClient.Close();
-            return rpcDataServers.GameServers;
+            return rpcDataNews.News;
         }
     }
 }
