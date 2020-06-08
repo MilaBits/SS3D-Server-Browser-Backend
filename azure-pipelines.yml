@@ -17,3 +17,18 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'SonarCloud'
+    organization: 'millythings'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'ss3d-server-browser'
+    cliProjectName: 'ss3d-server-browser'
+    cliSources: '.'
+- task: SonarCloudAnalyze@1
+
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
