@@ -14,13 +14,16 @@ namespace ss3d_server_browser_servers_microservice
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            CurrentConfiguration = Configuration;
         }
 
         public IConfiguration Configuration { get; }
+        public static IConfiguration CurrentConfiguration;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddDbContext<GameServerDataContext>(options => options.UseMySql(
                 Configuration.GetConnectionString("ServersDatabase"),
                 sqlOptions => { sqlOptions.EnableRetryOnFailure(); }));

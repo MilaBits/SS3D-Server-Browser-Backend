@@ -20,11 +20,13 @@ namespace ss3d_server_browser_news_microservice.Messaging
         private NewsDbHelper _newsDbHelper;
 
         private const string ServersQueueName = "rpc.getnews";
-        private const string HostName = "localhost";
+        private string HostName = "localhost";
         private const int Port = 5672;
 
         public RabbitRpc(ILoggerFactory loggerFactory)
         {
+            HostName = Startup.CurrentConfiguration["RabbitHost"];
+            
             _logger = loggerFactory.CreateLogger<RabbitRpc>();
             _newsDbHelper = new NewsDbHelper(_logger);
             RegisterRpcQueue(ServersQueueName);

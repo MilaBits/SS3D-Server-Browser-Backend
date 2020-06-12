@@ -1,0 +1,21 @@
+﻿apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - gateway-deployment.yaml
+  - gateway-service.yaml
+  - db-servers-persistentvolumeclaim.yaml
+  - db-servers-deployment.yaml
+  - db-servers-service.yaml
+  - db-news-persistentvolumeclaim.yaml    
+  - db-news-deployment.yaml
+  - db-news-service.yaml
+  - microservice-servers-deployment.yaml
+  - microservice-servers-service.yaml
+  - microservice-news-deployment.yaml
+  - microservice-news-service.yaml
+  - rabbitmq-data-persistentvolumeclaim.yaml
+  - rabbitmq-deployment.yaml
+  - rabbitmq-service.yaml
+  - ingress.yaml
+namespace: ss3d-server-browser
+namePrefix: ss3dsb-

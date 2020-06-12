@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Configuration;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
@@ -20,11 +21,13 @@ namespace ss3d_server_browser_servers_microservice.Messaging
         private ServersDbHelper _serversDbHelper;
 
         private const string ServersQueueName = "rpc.getservers";
-        private const string HostName = "rabbitmq";
+        private string HostName;/* = "rabbitmq";*/
         private const int Port = 5672;
 
         public RabbitRpc(ILoggerFactory loggerFactory)
         {
+            HostName = Startup.CurrentConfiguration["RabbitHost"];
+
             _logger = loggerFactory.CreateLogger<RabbitRpc>();
             _serversDbHelper = new ServersDbHelper(_logger);
             RegisterRpcQueue(ServersQueueName);

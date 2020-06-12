@@ -9,6 +9,8 @@ services:
     ports:
       - "5672:5672"
       - '15672:15672'
+    volumes:
+      - 'rabbitmq-data:/bitnami'
   
   gateway:
     build:
@@ -18,43 +20,43 @@ services:
     ports:
       - '5000:5000'
       
-  servers-microservice:
+  microservice-servers:
     build:
       context: ./
       dockerfile: ./Dockerfile-Servers
     image: millybits/ss3d-server-browser-servers-microservice
     ports:
       - '8050:8080'
-    restart: unless-stopped
+    restart: always
       
-  servers-db:
-    image: mysql
-    command: --default-authentication-plugin=mysql_native_password
-    restart: unless-stopped
-    environment:
-      MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: servers
-    ports:
-      - 3306:3306
-    expose: 
-      - '3306'
-    volumes:
-      - servers-db:/var/lib/mysql
-      
-  news-microservice:
+  microservice-news:
     build:
       context: ./
       dockerfile: ./Dockerfile-News
     image: millybits/ss3d-server-browser-news-microservice
     ports:
       - '8060:8080'
-    restart: unless-stopped
-    
-  news-db:
+    restart: always
+
+  db-servers:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
-    restart: unless-stopped
+    restart: always
+    environment:
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: servers
+    ports:
+      - 3307:3306
+    expose:
+      - "3307"
+    volumes:
+      - db-servers:/var/lib/mysql
+
+  db-news:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
     environment:
       MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: root
@@ -62,13 +64,15 @@ services:
     cap_add:
     - SYS_NICE # CAP_SYS_NICE
     ports:
-      - 3307:3307
-    expose: 
-      - '3307'
+      - 3308:3306
+    expose:
+      - "3308"
     volumes:
-      - news-db:/var/lib/mysql
+      - db-news:/var/lib/mysql
             
 volumes:
-  servers-db:
-  news-db:
+  db-servers:
+  db-news:
+  rabbitmq-data:
+      driver: local
   

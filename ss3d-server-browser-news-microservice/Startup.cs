@@ -14,9 +14,11 @@ namespace ss3d_server_browser_news_microservice
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            CurrentConfiguration = configuration;
         }
 
         public IConfiguration Configuration { get; }
+        public static IConfiguration CurrentConfiguration;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)

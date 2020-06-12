@@ -1,0 +1,36 @@
+﻿apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ss3dsb-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 0m
+spec:
+  rules:
+    - host: ss3dsb.rabbit.kn01.fhict.nl
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: rabbitmq
+              servicePort: 15672
+    - host: ss3dsb.gateway.kn01.fhict.nl
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: gateway
+              servicePort: 5000
+    - host: ss3dsb.servers.kn01.fhict.nl
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: servers-microservice
+              servicePort: 8050
+    - host: ss3dsb.news.kn01.fhict.nl
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: news-microservice
+              servicePort: 8060
