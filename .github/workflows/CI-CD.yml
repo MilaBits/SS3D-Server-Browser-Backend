@@ -1,4 +1,4 @@
-name: .NET Core
+name: CI/CD
 
 on:
   push:
@@ -26,5 +26,9 @@ jobs:
 
     - name: Build docker-compose
       run: docker-compose build
+  deploy:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v2
     - name: Deploy to kubernetes
       run: kubectl apply -k ./kubernetes
