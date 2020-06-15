@@ -47,9 +47,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: servers
     ports:
-      - 3307:3306
-    expose:
-      - "3307"
+      - 3306:3306
     volumes:
       - db-servers:/var/lib/mysql
 
@@ -64,9 +62,7 @@ services:
     cap_add:
     - SYS_NICE # CAP_SYS_NICE
     ports:
-      - 3308:3306
-    expose:
-      - "3308"
+      - 3306:3306
     volumes:
       - db-news:/var/lib/mysql
             
