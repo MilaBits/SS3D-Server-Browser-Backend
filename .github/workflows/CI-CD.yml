@@ -30,5 +30,7 @@ jobs:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v2
-    - name: Deploy to kubernetes
+    - name: delete current kubernetes deployment
+      run: kubectl delete -k ./kubernetes
+    - name: Deploy new kubernetes deployment
       run: kubectl apply -k ./kubernetes
