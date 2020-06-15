@@ -18,4 +18,3 @@ resources:
   - rabbitmq-service.yaml
   - ingress.yaml
 namespace: ss3d-server-browser
-namePrefix: ss3dsb-
