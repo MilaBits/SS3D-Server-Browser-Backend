@@ -12,7 +12,7 @@ namespace ss3d_server_browser_gateway.Controllers
     public class NewsController
     {
         //TODO: Re-enable cors 
-        [EnableCors(Startup.ElectronClientPolicy)]
+        // [EnableCors(Startup.ElectronClientPolicy)]
         [HttpGet]
         public IEnumerable<News> Get()
         {
