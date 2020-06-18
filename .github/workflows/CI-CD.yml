@@ -8,6 +8,19 @@ on:
   repository_dispatch:
 
 jobs:
+  sonarcloud:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        # Disabling shallow clone is recommended for improving relevancy of reporting
+        fetch-depth: 0
+        projectBaseDir: /ss3d-server-browser-gateway
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   build:
     runs-on: self-hosted
     steps:
