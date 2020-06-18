@@ -8,36 +8,8 @@ on:
   repository_dispatch:
 
 jobs:
-  sonarcloud:
-    runs-on: self-hosted
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        # Disabling shallow clone is recommended for improving relevancy of reporting
-        fetch-depth: 0
-        projectBaseDir: /ss3d-server-browser-gateway
-    - name: dotnet-sonarcloud
-      uses: NazmiAltun/dotnet-sonarscanner-action@1.0.6-beta
-      with:
-        # SonarQube/SonarCloud project key
-        project-key: secrets.SONAR_TOKEN
-        # SonarQube/SonarCloud project name
-        project-name: SS3D-Server-Browser-Backend
-        # Organization name on SonarQube/SonarCloud
-        organization: millybits
-        # Pattern for code coverage exclusion
-        #cpd-exclusions: # optional
-        # Pattern for code coverage exclusion
-        #opencover-report-paths: # optional, default is coverage/*.xml
-        # Pattern for code coverage exclusion
-        #url: # default is https://sonarcloud.io
-        # Relative path of sln file
-        solution-path: /ss3d-server-browser-gateway
-        # pull request number
-        #pr-key: # optional
   build:
-    needs: [sonarcloud]
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - uses: actions/checkout@v2
       
